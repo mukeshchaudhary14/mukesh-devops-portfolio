@@ -78,9 +78,9 @@ const index = () => {
     return (
         <Container id="experience">
             <Wrapper>
-                <Title>Experience</Title>
+                <Title>Key Taken Courses</Title>
                 <Desc>
-                    My work experience as a software engineer and working on different companies and projects.
+                "Showcasing key courses that have enhanced my DevOps expertise and technical skills."
                 </Desc>
                 <TimelineSection>
                     <Timeline>
@@ -103,4 +103,4 @@ const index = () => {
     )
 }
 
-export default index
+export default index 
