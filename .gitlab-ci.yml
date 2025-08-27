@@ -1,0 +1,62 @@
+stages:
+  - install
+  - test
+  - build
+  - docker
+
+variables:
+  NODE_ENV: production
+  CI: "true"
+  DOCKER_IMAGE: makug/my-react-app
+  DOCKER_TAG: $CI_COMMIT_SHORT_SHA
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: install
+  image: node:18
+  script:
+    - npm ci || npm install
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1h
+
+run_tests:
+  stage: test
+  image: node:18
+  script:
+    - npm test -- --watchAll=false --passWithNoTests
+
+build_app:
+  stage: build
+  image: node:18
+  script:
+    - CI=false npm run build
+  artifacts:
+    paths:
+      - build/
+    expire_in: 1 week
+
+build_docker_image:
+  stage: docker
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  script:
+  - docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+  - docker run -d --name test-container $DOCKER_IMAGE:$DOCKER_TAG
+  - sleep 5  # Wait for container to start
+  - docker ps  # Check if container is running
+  - docker logs test-container  # Check container logs
+  - docker stop test-container  # Stop the test container
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker push $DOCKER_IMAGE:$DOCKER_TAG
+  only:
+    - main  # Only build Docker images for main branch
