@@ -9,7 +9,7 @@ export const Bio = {
   description:
     "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
   github: "https://github.com/mukeshchaudhary14",
-  resume:"https://drive.google.com/file/d/1M_Vf01i3XgEM-LX7DP-lre3uW8JT5Zn0/view?usp=sharing",
+  resume:"src/Mukesh-Chaudhary Devops (1).pdf",
   linkedin: "https://www.linkedin.com/in/mukesh-chaudhary17112002/",
   insta: "https://www.instagram.com/mukesh.chaudhary.14?utm_source=qr&igsh=aWVhcmwxMG1sMjE3",
   facebook: "https://www.facebook.com/share/199MhZcti6/",
@@ -551,4 +551,5 @@ export const TimeLineData = [
   { year: 2024, text: "Founded DevOps Mastery" },
   { year: 2023-2025, text: "Shared my projects with the world" },
 ];
+
 
