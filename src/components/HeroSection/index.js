@@ -28,7 +28,8 @@ const HeroSection = () => {
                             </Span>
                         </TextLoop>
                         <SubTitle>{Bio.description}</SubTitle>
-                        <ResumeButton href={Bio.resume} target='display'>Check Resume</ResumeButton>
+                        <ResumeButton href={Bio.resume} target="_blank">Check Resume</ResumeButton>
+                        
                     </HeroLeftContainer>
 
                     <HeroRightContainer id="Right">
@@ -41,5 +42,6 @@ const HeroSection = () => {
         </div>
     )
 }
+
 
 export default HeroSection
